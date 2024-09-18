@@ -1,0 +1,36 @@
+spring:
+  cloud:
+    function:
+      definition: processor 
+    stream:
+      bindings:
+        processor-in-0:
+          destination: Customer
+          group: my-consumer-group
+        processor-out-0:
+          destination: CustomerEVEN
+          producer:
+            use-native-encoding: true  # Use native encoding for Avro
+        processor-out-1:
+          destination: CustomerODD
+          producer:
+            use-native-encoding: true  # Use native encoding for Avro
+      kafka:
+        bindings:
+          processor-in-0:
+            consumer:
+              enableDlq: true
+              dlq-name: dead-letter-topic
+          processor-out-0:
+            producer:
+              configuration:
+                value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+          processor-out-1:
+            producer:
+              configuration:
+                value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+        binder:
+          brokers: localhost:9092
+          configuration:
+            schema.registry.url: http://localhost:8081
+            specific.avro.reader: true  # Enable specific Avro reader globally for consumers
