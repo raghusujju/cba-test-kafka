@@ -1,0 +1,22 @@
+{
+  "namespace": "au.com.test.cba.kafka.model",
+  "type": "record",
+  "name": "Customer",
+  "fields": [
+    {
+      "name": "firstName",
+      "type": "string",
+      "doc": "First name"
+    },
+    {
+      "name": "lastName",
+      "type": "string",
+      "doc": "Last name"
+    },
+    {
+      "name": "dateOfBirth",
+      "type": "string",
+      "doc": "Date of birth in format YYYY-MM-DD"
+    }
+  ]
+}
