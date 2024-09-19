@@ -10,6 +10,10 @@ The repository contains implementation of the requirement as given below.
 
 Spring cloud kafka stream is used to develop this functionality as it uses functional programming to implement producers/consumers.  Also, most of the routing is automatically achieved via configuration over code. 
 
+Assumptions :
+1. There is no key associated with the payload as per the requirement above.
+2. Age 0 is considered even and published to CustomerEVEN topic.
+
 ## Code
 
 The main logic of the code is present in two place, 
@@ -33,8 +37,6 @@ Exception Handling: An exceptions wrto schema of the payload will result in avro
 Build:
 
 Navigate to the root of the directory and perform ```mvn clean package`` which executes unit test, compiles and builds the jar file. 
-
-
 
 
 # How to run this locally
